@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+    font-family: "Open sans";
+    src: url(./assets/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(./assets/Roboto-Regular.ttf);
+    display: swap;
+}
