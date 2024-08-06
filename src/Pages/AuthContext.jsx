@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     }
     const [isAuthenticated, setIsAuthenticated] = useState(isExistingUser);
     const setLogin = (username) => {
-        OfflineStorage.setOfflineItem(offlineItems.USERNAME, username);
+        // OfflineStorage.setOfflineItem(offlineItems.USERNAME, username);
         setIsAuthenticated(true);
     };
     const setLogout = () => {

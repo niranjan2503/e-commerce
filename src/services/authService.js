@@ -1,10 +1,6 @@
 import axios from "axios";
 import { offlineItems, OfflineStorage } from "./offlinestorage";
 import { API_ROUTES, serverUrl } from "./ApiUrlConstants";
-const dublicateUser = {
-    username: "steve",
-    password: "Smith123",
-};
 export const onLogin = async (userDetails) => {
     let { username, password } = userDetails;
     console.log(userDetails);

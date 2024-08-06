@@ -10,9 +10,8 @@ const SignIn = ({ setLogin, setSignUp, setUser }) => {
     const onSubmit = (values, actions) => {
         onLogin(values)
             .then((res) => {
-                setLogin(res.data.token);
-                if (res.data?.user) setUser(res.data.user);
-                setUser("Some One");
+                setLogin(res.data.data.access);
+                setUser(res.data.data.username);
                 navigate("/");
                 actions.resetForm();
             })
