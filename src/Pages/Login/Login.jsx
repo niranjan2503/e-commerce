@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import "./login.css";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-const Login = ({ setLogin, isAuthenticated }) => {
+import { useAuth } from "../AuthContext";
+const Login = () => {
+    const { setLogin, isAuthenticated, setUser } = useAuth();
     const [signUp, setSignUp] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
@@ -18,7 +20,11 @@ const Login = ({ setLogin, isAuthenticated }) => {
                 {signUp ? (
                     <SignUp setSignUp={setSignUp}></SignUp>
                 ) : (
-                    <SignIn setLogin={setLogin} setSignUp={setSignUp}></SignIn>
+                    <SignIn
+                        setLogin={setLogin}
+                        setSignUp={setSignUp}
+                        setUser={setUser}
+                    ></SignIn>
                 )}
             </div>
         </section>

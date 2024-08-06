@@ -4,19 +4,21 @@ import { useFormik } from "formik";
 import { loginschema } from "../../services/userValidationSchema";
 import { onLogin } from "../../services/authService";
 import { useState } from "react";
-const SignIn = ({ setLogin, setSignUp }) => {
+const SignIn = ({ setLogin, setSignUp, setUser }) => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const onSubmit = (values, actions) => {
         onLogin(values)
             .then((res) => {
-                setLogin(values.username);
+                setLogin(res.data.token);
+                if (res.data?.user) setUser(res.data.user);
+                setUser("Some One");
                 navigate("/");
                 actions.resetForm();
             })
             .catch((err) => {
                 actions.setSubmitting(false);
-                setError(err.message);
+                setError(err.response.data.message);
             });
     };
     const {

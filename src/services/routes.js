@@ -7,11 +7,6 @@ export const routes = [
         component: Home,
         canAuthenticate: true,
     },
-    // {
-    //     path: "/home",
-    //     component: Home,
-    //     canAuthenticate: true,
-    // },
     {
         path: "/login",
         component: Login,

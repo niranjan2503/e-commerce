@@ -4,7 +4,7 @@ import { routes } from "./services/routes";
 import { useAuth } from "./Pages/AuthContext";
 
 function App() {
-    const { isAuthenticated, setLogin } = useAuth();
+    const { isAuthenticated } = useAuth();
     return (
         <main>
             <Routes>
@@ -22,12 +22,7 @@ function App() {
                         <Route
                             key={route.path}
                             path={route.path}
-                            element={
-                                <route.component
-                                    setLogin={setLogin}
-                                    isAuthenticated={isAuthenticated}
-                                ></route.component>
-                            }
+                            element={<route.component></route.component>}
                         ></Route>
                     );
                 })}
