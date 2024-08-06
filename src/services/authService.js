@@ -8,10 +8,18 @@ const dublicateUser = {
 export const onLogin = async (userDetails) => {
     let { username, password } = userDetails;
     console.log(userDetails);
-    return await axios.post(serverUrl + API_ROUTES.LOGIN, {
-        username,
-        password,
-    });
+    return await axios.post(
+        serverUrl + API_ROUTES.LOGIN,
+        {
+            username,
+            password,
+        },
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
+        }
+    );
 };
 
 export const getuserDetails = () => {
