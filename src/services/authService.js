@@ -8,24 +8,10 @@ const dublicateUser = {
 export const onLogin = async (userDetails) => {
     let { username, password } = userDetails;
     console.log(userDetails);
-    let url = "http://localhost:3005/getUser";
-    return await axios.post(url, {
-        mobileNo: "8688630059",
-        password: "nadi",
+    return await axios.post(serverUrl + API_ROUTES.LOGIN, {
+        username,
+        password,
     });
-    // return await new Promise((resolve, reject) => {
-    //     if (username === dublicateUser.username && password === dublicateUser.password) {
-    //         resolve({
-    //             status: 200,
-    //             message: "Authentication Successful",
-    //         });
-    //     } else {
-    //         reject({
-    //             status: 403,
-    //             message: "Invalid username and password",
-    //         });
-    //     }
-    // });
 };
 
 export const getuserDetails = () => {
