@@ -10,8 +10,8 @@ const SignIn = ({ setLogin, setSignUp, setUser }) => {
     const onSubmit = (values, actions) => {
         onLogin(values)
             .then((res) => {
-                setLogin(res.data.data.access);
-                setUser(res.data.data.username);
+                setLogin(res.data.access);
+                setUser(res.data.username);
                 navigate("/");
                 actions.resetForm();
             })
@@ -43,7 +43,7 @@ const SignIn = ({ setLogin, setSignUp, setUser }) => {
             {error && <p className="form-error">{error}</p>}
             <form className="form" onSubmit={handleSubmit}>
                 <FormField
-                    label={"User Id"}
+                    label={"Email or Phone"}
                     type="text"
                     id={"username"}
                     value={values.user}

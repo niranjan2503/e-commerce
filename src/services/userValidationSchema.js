@@ -8,10 +8,10 @@ export const loginschema = yup.object().shape({
 });
 
 export const signupSchema = yup.object().shape({
-    firstname: yup.string().trim().required("required"),
-    lastname: yup.string().trim().required("required"),
+    first_name: yup.string().trim().required("required"),
+    last_name: yup.string().trim().required("required"),
     email: yup.string().email("Please Enter Valid Email").required("required"),
-    phonenumber: yup.string().required("required"),
+    phone_number: yup.string().required("required"),
     password: yup
         .string()
         .min(5, "Password should be of minimum 5 characters")

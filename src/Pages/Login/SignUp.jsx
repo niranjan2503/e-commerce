@@ -1,19 +1,34 @@
 import { useFormik } from "formik";
 import FormField from "./FormField";
 import { signupSchema } from "../../services/userValidationSchema";
+import { userRegistration } from "../../services/authService";
+import { useState } from "react";
 
 const SignUp = ({ setSignUp }) => {
+    const handleRegister = (values, actions) => {
+        userRegistration(values)
+            .then((response) => {
+                console.log("Registration Successful");
+                setSignUp(false);
+            })
+            .catch((err) => {
+                actions.setErrors({
+                    email: err.response.data.errors.email,
+                    phone_number: err.response.data.errors.phone_number,
+                });
+            });
+    };
     const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik(
         {
             initialValues: {
-                firstname: "",
-                lastname: "",
-                email: "",
-                phonenumber: "",
-                password: "",
+                first_name: "niranjan",
+                last_name: "subbu",
+                email: "niranjan@g.com",
+                phone_number: "12345",
+                password: "Hi1234",
             },
             validationSchema: signupSchema,
-            // onSubmit,
+            onSubmit: handleRegister,
         }
     );
     return (
@@ -23,25 +38,25 @@ const SignUp = ({ setSignUp }) => {
                 <form className="form" onSubmit={handleSubmit}>
                     <FormField
                         label={"First Name"}
-                        id="firstname"
+                        id="first_name"
                         placeholder={"Enter First Name"}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.firstname}
-                        touched={touched.firstname}
+                        value={values.first_name}
+                        touched={touched.first_name}
                         type={"text"}
-                        error={errors.firstname}
+                        error={errors.first_name}
                     ></FormField>
                     <FormField
                         label={"Last Name"}
-                        id="lastname"
+                        id="last_name"
                         placeholder={"Enter last Name"}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.lastname}
-                        touched={touched.lastname}
+                        value={values.last_name}
+                        touched={touched.last_name}
                         type={"text"}
-                        error={errors.lastname}
+                        error={errors.last_name}
                     ></FormField>
                     <FormField
                         label={"Email"}
@@ -56,14 +71,14 @@ const SignUp = ({ setSignUp }) => {
                     ></FormField>
                     <FormField
                         label={"Phone Number"}
-                        id="phonenumber"
+                        id="phone_number"
                         placeholder={"Enter Phone Number"}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.phonenumber}
-                        touched={touched.phonenumber}
+                        value={values.phone_number}
+                        touched={touched.phone_number}
                         type={"text"}
-                        error={errors.phonenumber}
+                        error={errors.phone_number}
                     ></FormField>
                     <FormField
                         label={"Password"}
@@ -73,7 +88,7 @@ const SignUp = ({ setSignUp }) => {
                         onBlur={handleBlur}
                         value={values.password}
                         touched={touched.password}
-                        type={"text"}
+                        type={"password"}
                         error={errors.password}
                     ></FormField>
                     <div className="form-field btn-form-field">
