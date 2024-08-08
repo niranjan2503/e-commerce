@@ -21,11 +21,11 @@ const SignUp = ({ setSignUp }) => {
     const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik(
         {
             initialValues: {
-                first_name: "niranjan",
-                last_name: "subbu",
-                email: "niranjan@g.com",
-                phone_number: "12345",
-                password: "Hi1234",
+                first_name: "",
+                last_name: "",
+                email: "",
+                phone_number: "",
+                password: "",
             },
             validationSchema: signupSchema,
             onSubmit: handleRegister,
