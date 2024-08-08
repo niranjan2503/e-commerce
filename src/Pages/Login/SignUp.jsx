@@ -21,7 +21,7 @@ const SignUp = ({ setSignUp }) => {
     const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik(
         {
             initialValues: {
-                first_name: "",
+                first_name: "subbu",
                 last_name: "",
                 email: "",
                 phone_number: "",
