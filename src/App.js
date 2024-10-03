@@ -1,33 +1,25 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
-import { routes } from "./services/routes";
-import { useAuth } from "./Pages/AuthContext";
-
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Home from "./components/Home";
+import About from "./components/About";
+import useAuth from "./hooks/useAuth";
+import RequireAuth from "./components/RequireAuth";
+import PersistentLogin from "./components/PersistentLogin";
 function App() {
-    const { isAuthenticated } = useAuth();
     return (
-        <main>
-            <Routes>
-                {routes.map((route) => {
-                    if (route.canAuthenticate && !isAuthenticated) {
-                        return (
-                            <Route
-                                key={route.path}
-                                path={route.path}
-                                element={<Navigate to={"/login"}></Navigate>}
-                            ></Route>
-                        );
-                    }
-                    return (
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                            element={<route.component></route.component>}
-                        ></Route>
-                    );
-                })}
-            </Routes>
-        </main>
+        <Routes>
+            <Route path="/" element={<Outlet></Outlet>}>
+                <Route path="/login" element={<Login></Login>}></Route>
+                <Route path="/register" element={<Register></Register>}></Route>
+                <Route element={<PersistentLogin></PersistentLogin>}>
+                    <Route element={<RequireAuth></RequireAuth>}>
+                        <Route path="/" element={<Home></Home>}></Route>
+                        <Route path="/about" element={<About></About>}></Route>
+                    </Route>
+                </Route>
+            </Route>
+        </Routes>
     );
 }
 export default App;
